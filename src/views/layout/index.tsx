@@ -1,6 +1,18 @@
-const Layout = ()=>{
+import styles from './index.module.less'
+import {Outlet} from "react-router-dom";
+import Header from "@/components/header";
+
+import Footer from "@/components/footer";
+
+const Layout = () => {
     return (
-        <div>Layout</div>
+        <div className={styles.layout}>
+            <Header/>
+            <div className={styles.main}>
+                <Outlet/>
+            </div>
+            <Footer/>
+        </div>
     )
 }
 export default Layout

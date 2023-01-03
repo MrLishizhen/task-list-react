@@ -1,0 +1,47 @@
+.item {
+  height: 46px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  display:flex;
+  align-items: center;
+  padding:0 14px 0 16px;
+  transition: all 0.3s;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  &:hover{
+    cursor: pointer;
+    border-color:#F2F2F2;
+  }
+  .task_com{
+    padding:0 8px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 22px;
+    font-size:14px;
+    flex-grow: 1;
+    overflow: hidden;   //隐藏
+    white-space: nowrap;  //不换行
+    text-overflow: ellipsis; //超出部分省略号
+
+    &.task_com_hot{
+      text-decoration: line-through;
+      color: #C0C0C0;
+    }
+  }
+  .tabs{
+    flex-shrink: 0;
+    width:22px;
+    height:22px;
+    border-radius: 4px;
+    line-height: 22px;
+    text-align: center;
+    background: url(../../../assets/icon_more.svg) no-repeat center center/100% 100%;
+    &.tabs_hot{
+      opacity: 0.4;
+    }
+    &:hover{
+      border-radius: 4px;
+      background: #F6F6F6 url(../../../assets/icon_more.svg) no-repeat center center/100% 100%;
+    }
+  }
+}

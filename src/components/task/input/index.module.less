@@ -1,0 +1,32 @@
+.inputs{
+  height:46px;
+  background: rgba(246, 246, 246, 1);
+  border-radius: 6px;
+  display:flex;
+  align-items: center;
+  padding:12px;
+  box-sizing: border-box;
+  margin-bottom:24px;
+  .input_icon{
+    width:22px;
+    height:22px;
+    flex-shrink: 0;
+    background:url(../../../assets/icon_search_add.svg) no-repeat center center/100% 100%;
+  }
+  .input{
+    flex-grow: 1;
+    padding-left:6px;
+    border: none;
+    outline: none;
+    font-size:14px;
+    font-weight: 400;
+    color: #C0C0C0;
+    line-height:22px;
+    background: rgba(0,0,0,0);
+    &::placeholder{
+      color:rgba(192, 192, 192, 1);
+      font-size:14px;
+      font-weight: 400;
+    }
+  }
+}
