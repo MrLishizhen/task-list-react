@@ -1,49 +1,56 @@
-.task_box{
-  width:420px;
-  height:600px;
+.task_box {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
   background: #fff;
-  padding:24px;
+  padding: 24px;
   box-sizing: border-box;
-  box-shadow: 0px 8px 18px 0px rgba(0,0,0,0.02);
+  box-shadow: 0px 8px 18px 0px rgba(0, 0, 0, 0.02);
   border-radius: 18px;
   display: flex;
   flex-direction: column;
-  .task_top{
 
+  .task_top {
     box-sizing: border-box;
-    height:75px;
+    height: 75px;
     flex-shrink: 0;
     padding-bottom: 24px;
     border-bottom: 1px solid rgba(242, 242, 242, 1);
-    display:flex;
-    .task_left{
+    display: flex;
+
+    .task_left {
       flex-grow: 1;
-      .task_left_week_top{
-        font-size:18px;
+
+      .task_left_week_top {
+        font-size: 18px;
         color: #333333;
         line-height: 26px;
         font-weight: 600;
-        display:flex;
+        display: flex;
         align-items: end;
-        .week{
+
+        .week {
 
         }
-        .quantity{
+
+        .quantity {
 
         }
-        .today{
-          background: rgba(111,66,255,0.1);
+
+        .today {
+          background: rgba(111, 66, 255, 0.1);
           border-radius: 12px;
           font-weight: 500;
           color: #6F42FF;
-          font-size:12px;
-          width:40px;
-          height:22px;
+          font-size: 12px;
+          width: 40px;
+          height: 22px;
           line-height: 22px;
           text-align: center;
         }
       }
-      .task_left_week_bom{
+
+      .task_left_week_bom {
         font-weight: 400;
         color: #999999;
         line-height: 20px;
@@ -51,21 +58,24 @@
         margin-top: 4px;
       }
     }
-    .task_right{
-      width:50px;
-      height:50px;
+
+    .task_right {
+      width: 50px;
+      height: 50px;
       flex-shrink: 0;
       //background: #F6F6F6;
       border-radius: 50%;
     }
   }
-  .task_bom{
+
+  .task_bom {
     display: flex;
     flex-direction: column;
-    overflow:hidden;
+    overflow: hidden;
     flex-grow: 1;
     padding-top: 24px;
-    .task_item_box{
+
+    .task_item_box {
       flex-grow: 1;
       overflow-y: auto;
     }

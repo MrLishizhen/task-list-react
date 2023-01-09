@@ -1,9 +1,13 @@
 import styles from './index.module.less'
-import Task from "@/components/task";
+import React from "react";
+import Banner from './banner'
+import Model from "@/components/model";
+
 const Home = () => {
     return (
         <div className={styles.home}>
-            <Task></Task>
+            <Banner/>
+            <Model model_open={true}></Model>
         </div>
     )
 }

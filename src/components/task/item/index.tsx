@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './index.module.less'
 import Radio from "@/components/task/radio";
-
+import Model from '@/components/model'
 interface propRadio {
     data: any,
     onChange:(id:number)=>void
@@ -12,13 +12,16 @@ const Item: React.FC<propRadio> = ({data,onChange}) => {
         onChange(id)
     }
     return (
-        <div className={styles.item}>
-            <Radio radioChange={radioChange} id={data.id} is_radio={data.hot_radio}/>
-            <div
-                className={`${styles.task_com} ${data.hot_radio ? styles.task_com_hot : ''}`}>主页原型设计主页原型设计主页原型设计主页原型设计主页原型设计
+        <>
+            <div className={styles.item}>
+                <Radio radioChange={radioChange} id={data.id} is_radio={data.hot_radio}/>
+                <div
+                    className={`${styles.task_com} ${data.hot_radio ? styles.task_com_hot : ''}`}>主页原型设计主页原型设计主页原型设计主页原型设计主页原型设计
+                </div>
+                <div className={`${styles.tabs} ${data.hot_radio ? styles.tabs_hot : ''}`}></div>
             </div>
-            <div className={`${styles.tabs} ${data.hot_radio ? styles.tabs_hot : ''}`}></div>
-        </div>
+        </>
+
     )
 }
 
