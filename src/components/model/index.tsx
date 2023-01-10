@@ -1,6 +1,7 @@
 import styles from './index.module.less'
 import React, {useState} from 'react'
-
+import {set_model_open} from '@/redux/home_model'
+import {useAppDispatch} from '@/redux/hook'
 interface model {
     model_open: boolean,//组件是否加载
     top_content: any,//头部内容
@@ -11,7 +12,10 @@ interface model {
 }
 
 const Model: React.FC<model | any> = ({model_open, top_content, com_content, footer_content, footer_is=true,clone_icon=true}) => {
-
+    const dispatch = useAppDispatch()
+    const cloneClick = ()=>{
+        dispatch(set_model_open(false))
+    }
     return (
         <div style={{'display': model_open ? 'block' : 'none'}} className={styles.model_box}>
             <div className={styles.model}>
@@ -22,7 +26,7 @@ const Model: React.FC<model | any> = ({model_open, top_content, com_content, foo
                         }
                     </div>
                     {
-                        clone_icon ? <div className={styles.model_top_right_icon}/> : ''
+                        clone_icon ? <div onClick={cloneClick} className={styles.model_top_right_icon}/> : ''
                     }
 
                 </div>

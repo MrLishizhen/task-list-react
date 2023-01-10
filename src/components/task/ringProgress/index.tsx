@@ -21,7 +21,7 @@ const Ring_progress: React.FC<{ percent: number }> = ({percent = 0}) => {
         return () => {
             ringProgress.destroy()
         }
-    })
+    },[percent])
     return (
         <div ref={container}></div>
     )

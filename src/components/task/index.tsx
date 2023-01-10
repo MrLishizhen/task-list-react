@@ -5,14 +5,16 @@ import Item from './item'
 import TaskEmpty from "@/components/task/task_empty";
 import Ring_progress from './ringProgress'
 import {useState} from "react";
+import {set_model_open} from '@/redux/home_model'
+import {useAppDispatch, useAppSelector} from '@/redux/hook'
 
 interface data_type {
-    day:number,
-    week:string,
-    hot:boolean,
-    week_str:string,
-    month_day:string,
-    list:[]
+    day: number,
+    week: string,
+    hot: boolean,
+    week_str: string,
+    month_day: string,
+    list: task_list[]
 }
 
 interface task_list {
@@ -22,15 +24,26 @@ interface task_list {
 }
 
 const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
+    const dispatch = useAppDispatch()
     const [task_list, set_task_list] = useState<task_list[]>([...data.list])
-    const task_list_click = (id: number) => {
+    const task_list_radio = (id: number) => {
+
         set_task_list([...task_list.map((u) => {
-            if (u.id === id && !u.hot_radio) {
-                return {...u, hot_radio: true}
+            if (u.id === id) {
+                return {...u, hot_radio: !u.hot_radio}
             } else {
                 return {...u}
             }
         })])
+    }
+    const task_list_content_click = (id: number): void => {
+        const hot_list = task_list.find(u=>u.id===id);
+
+        dispatch(set_model_open({
+            model_open: true,
+            hot_list,
+            ...data
+        }))
     }
     const hot_list = task_list.filter(u => u.hot_radio);
     const addChange = (e: any) => {
@@ -64,7 +77,8 @@ const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
                 <div className={styles.task_item_box}>
                     {
                         task_list && task_list.length > 0 ? task_list.map(u => {
-                            return <Item key={u.id} onChange={task_list_click} data={u}/>
+                            return <Item key={u.id} task_list_content_click={task_list_content_click}
+                                         onChange={task_list_radio} data={u}/>
                         }) : <TaskEmpty/>
                     }
                 </div>

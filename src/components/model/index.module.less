@@ -33,20 +33,23 @@
         height:100%;
       }
       .model_top_right_icon{
-        width:24px;
-        height:24px;
+        width:22px;
+        height:22px;
         position: absolute;
         top:24px;
         right:24px;
-        background: #999999;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: url('../../assets/close_normal.svg') no-repeat center center/100% 100%;
+        &:hover{
+          background-image: url('../../assets/close_click.svg')
+        }
       }
     }
 
     .model_com {
       flex-grow: 1;
       padding:24px 40px;
-
-
     }
 
     .model_footer {

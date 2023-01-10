@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 2</title>
+    <g id="页面" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="02编辑_默认" transform="translate(-600.000000, -749.000000)">
+            <g id="编组-119" transform="translate(560.000000, 260.000000)">
+                <g id="编组-118" transform="translate(40.000000, 455.000000)">
+                    <g id="编组-2" transform="translate(0.000000, 34.000000)">
+                        <rect id="矩形" x="0" y="0" width="22" height="22"></rect>
+                        <g id="编组-22" transform="translate(4.330000, 4.330000)" stroke="#DB4D4D" stroke-linejoin="round">
+                            <polygon id="路径" points="1.66666667 2 1.66666667 13.3333333 11.6666667 13.3333333 11.6666667 2"></polygon>
+                            <line x1="5.33333333" y1="5.33333333" x2="5.33333333" y2="9.66666667" id="路径" stroke-linecap="round"></line>
+                            <line x1="8" y1="5.33333333" x2="8" y2="9.66666667" id="路径" stroke-linecap="round"></line>
+                            <line x1="0" y1="2" x2="13.3333333" y2="2" id="路径" stroke-linecap="round"></line>
+                            <polygon id="路径" points="4 2 5.09633333 0 8.25903333 0 9.33333333 2"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

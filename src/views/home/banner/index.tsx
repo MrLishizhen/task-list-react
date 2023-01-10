@@ -14,8 +14,15 @@ interface data_type {
     hot: boolean,
     week_str: string,
     month_day: string,
-    list: []
+    list: task_list[]
 }
+
+interface task_list {
+    title: string,
+    hot_radio: boolean,
+    id: number
+}
+
 
 /*
 * 1.无缝轮播
@@ -23,34 +30,29 @@ interface data_type {
 *
 *
 * */
-const Banner = () => {
-    const {header_tabs, tab_click} = useContext(ThemeContext);
-    const name = header_tabs.find(u => u.hot)?.name || ''
-    const [data, set_data] = useState<data_type[]>([])
+const Banner:React.FC<{name:string,data:data_type[]}> = ({name,data}) => {
+
     const banner_box = useRef<HTMLDivElement>(null)
-    const swiper = useSwiper();
+    // const swiper = useSwiper();
 
-    useEffect(() => {
-        set_data(timeFormatting(name))
-    }, [name])
-    useEffect(() => {
 
-        if (banner_box.current) {
-            swiper && swiper.destroy(false)
-            if (data.length === 1) {
-            } else {
-
-            }
-        }
-
-    }, [data.length])
+    // useEffect(() => {
+    //     if (banner_box.current) {
+    //         swiper && swiper.destroy(false)
+    //         if (data.length === 1) {
+    //         } else {
+    //
+    //         }
+    //     }
+    //
+    // }, [data.length])
 
     return (
         <div className={styles.banner}>
             <div className={styles.banner_box} ref={banner_box}>
                 {
                     name === '天' ?
-                        data.map((u, i) => {
+                        data.map((u: data_type, i) => {
                             return (<div key={i} className={styles.banner_item}>
                                 <Task name={name} data={u}/>
                             </div>)
@@ -73,7 +75,7 @@ const Banner = () => {
                                 },
                                 1366: {
                                     slidesPerView: 4,
-                                    spaceBetween: 50
+                                    spaceBetween: 70
                                 }
                             }}
                             spaceBetween={70}
