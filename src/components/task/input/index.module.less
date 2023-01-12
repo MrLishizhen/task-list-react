@@ -1,33 +1,93 @@
-.inputs{
-  height:46px;
+.inputs {
+  height: 46px;
   background: rgba(246, 246, 246, 1);
   border-radius: 6px;
-  display:flex;
+  display: flex;
   align-items: center;
-  padding:12px;
+  padding: 12px;
   box-sizing: border-box;
-  margin-bottom:24px;
-  .input_icon{
-    width:22px;
-    height:22px;
-    flex-shrink: 0;
-    background:url(../../../assets/icon_search_add.svg) no-repeat center center/100% 100%;
-  }
-  .input{
+  margin-bottom: 24px;
+  border: 1px solid rgba(246, 246, 246, 1);
+  transition: all 0.3s linear;
 
-    flex-grow: 1;
-    padding-left:6px;
-    border: none;
-    outline: none;
-    font-size:14px;
-    font-weight: 400;
-    color: rgba(51, 51, 51, 1);
-    line-height:22px;
-    background: rgba(0,0,0,0);
-    &::placeholder{
-      color:rgba(192, 192, 192, 1);
-      font-size:14px;
-      font-weight: 400;
+  &:focus-within {
+    background: #fff;
+    border-color: #6F42FF;
+
+    & .enter_icon {
+      margin-top: -22px;
+    }
+
+    & .input_icon_box {
+      width: 0px;
+
+      .input_icon {
+        margin-top: -22px;
+      }
     }
   }
+
+  .input_icon_box {
+    width: 22px;
+    height: 22px;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: all 0.3s linear;
+
+    .input_icon {
+      transition: all 0.3s linear;
+      display: block;
+      width: 22px;
+      height: 22px;
+      background: url(../../../assets/icon_search_add.svg) no-repeat center center/100% 100%;
+    }
+
+    .input_label {
+      display: block;
+      width: 65px;
+      border-right: 1px solid #C9C9C9;
+      height: 22px;
+      box-sizing: border-box;
+      line-height: 22px;
+      color: #333333;
+      font-size: 14px;
+    }
+  }
+
+  .input {
+    transition: all 0.3s linear;
+    flex-grow: 1;
+    padding-left: 6px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 22px;
+    background: rgba(0, 0, 0, 0);
+
+    &::placeholder {
+      color: rgba(192, 192, 192, 1);
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+  }
+
+  .enter_icon_box {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    margin-right: 12px;
+    overflow: hidden;
+
+    .enter_icon {
+      transition: all 0.3s linear;
+      display: block;
+      width: 22px;
+      height: 44px;
+      background: url(../../../assets/icon_enter.svg) no-repeat center bottom;
+    }
+  }
+
 }

@@ -1,12 +1,16 @@
 import styles from './index.module.less'
-import React from 'react'
+import React, {useEffect} from 'react'
 import Inputs from './input'
 import Item from './item'
 import TaskEmpty from "@/components/task/task_empty";
 import Ring_progress from './ringProgress'
 import {useState} from "react";
 import {set_model_open} from '@/redux/home_model'
-import {useAppDispatch, useAppSelector} from '@/redux/hook'
+import {useAppDispatch} from '@/redux/hook'
+import {set_task_radio} from "@/api/home";
+import moment from "moment";
+import {deepClone} from "@/util/utils";
+import {nanoid} from 'nanoid'
 
 interface data_type {
     day: number,
@@ -20,16 +24,23 @@ interface data_type {
 interface task_list {
     title: string,
     hot_radio: boolean,
-    id: number
+    id: number|string
 }
 
 const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
     const dispatch = useAppDispatch()
-    const [task_list, set_task_list] = useState<task_list[]>([...data.list])
+    const [task_list, set_task_list] = useState<task_list[]>([])
+
+    useEffect(() => {
+        set_task_list(data.list)
+    }, [data.list])
     const task_list_radio = (id: number) => {
 
         set_task_list([...task_list.map((u) => {
             if (u.id === id) {
+                set_task_radio({id: u.id, task_radio: !u.hot_radio ? 1 : 0}).then(res => {
+                    console.log(res)
+                })
                 return {...u, hot_radio: !u.hot_radio}
             } else {
                 return {...u}
@@ -37,18 +48,26 @@ const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
         })])
     }
     const task_list_content_click = (id: number): void => {
-        const hot_list = task_list.find(u=>u.id===id);
-
+        const hot_list = task_list.find(u => u.id === id);
+        let new_data = deepClone(data)
+        new_data.list = task_list;
         dispatch(set_model_open({
             model_open: true,
             hot_list,
-            ...data
+            ...new_data
         }))
     }
     const hot_list = task_list.filter(u => u.hot_radio);
     const addChange = (e: any) => {
         if (e.charCode === 13) {
-
+            let task_item = {
+                title: e.target.value,
+                hot_radio: false,
+                id: nanoid(),
+                date: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+            e.target.value = ''
+            set_task_list([task_item, ...task_list])
         }
     }
     return (
@@ -78,7 +97,7 @@ const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
                     {
                         task_list && task_list.length > 0 ? task_list.map(u => {
                             return <Item key={u.id} task_list_content_click={task_list_content_click}
-                                         onChange={task_list_radio} data={u}/>
+                                         onChange={task_list_radio} data={{...u}}/>
                         }) : <TaskEmpty/>
                     }
                 </div>

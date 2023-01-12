@@ -29,7 +29,10 @@ const Item: React.FC<propRadio> = ({
                 <Radio radioChange={radioChange} id={data.id} is_radio={data.hot_radio}/>
                 <div
                     style={{...cont_style}}
-                    className={`${styles.task_com} ${data.hot_radio ? styles.task_com_hot : ''}`}>主页原型设计主页原型设计主页原型设计主页原型设计主页原型设计
+                    className={`${styles.task_com} ${data.hot_radio ? styles.task_com_hot : ''}`}>
+                    {
+                        data.title||''
+                    }
                 </div>
                 {
                     right_icon ? <div className={`${styles.tabs} ${data.hot_radio ? styles.tabs_hot : ''}`}>

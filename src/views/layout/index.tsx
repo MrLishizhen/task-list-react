@@ -3,10 +3,13 @@ import {Outlet} from "react-router-dom";
 import Header from "@/components/header";
 import React, {useState} from 'react'
 import Footer from "@/components/footer";
+import {getStartEndTime} from "@/util/utils";
 
 interface header_tabs_type {
     name: string,
-    hot: boolean
+    hot: boolean,
+    start_date: string,
+    end_date: string,
 }
 
 interface head_context {
@@ -15,7 +18,12 @@ interface head_context {
 }
 
 const themes = {
-    header_tabs: [{name: '天', hot: true}, {name: '周', hot: false}]
+    header_tabs: [{name: '天', hot: true, start_date: '', end_date: ''}, {
+        name: '周',
+        hot: false,
+        start_date: '',
+        end_date: ''
+    }]
 };
 //构造context
 export const ThemeContext: React.Context<head_context> = React.createContext({
@@ -26,9 +34,15 @@ export const ThemeContext: React.Context<head_context> = React.createContext({
 );
 
 const Layout = () => {
-    const [header_tabs, set_header_tabs] = useState<header_tabs_type[]>([{name: '天', hot: true}, {
+    const [header_tabs, set_header_tabs] = useState<header_tabs_type[]>([{
+        name: '天',
+        hot: true,
+        start_date: getStartEndTime('天')[0],
+        end_date: getStartEndTime('天')[1]
+    }, {
         name: '周',
-        hot: false
+        hot: false,
+        start_date: getStartEndTime('周')[0], end_date: getStartEndTime('周')[1]
     }]);
     // 点击切换
     const tab_click = (i: number): void => {

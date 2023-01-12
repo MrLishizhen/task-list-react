@@ -1,10 +1,7 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
+import React, {useRef} from 'react'
 import styles from './index.module.less'
 import Task from "@/components/task";
-import {ThemeContext} from "@/views/layout";
-import {timeFormatting} from "@/util/utils";
-import {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
-import {Swiper, SwiperSlide, useSwiper} from 'swiper/react';
+import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -30,22 +27,8 @@ interface task_list {
 *
 *
 * */
-const Banner:React.FC<{name:string,data:data_type[]}> = ({name,data}) => {
-
+const Banner: React.FC<{ name: string, data: data_type[] }> = ({name, data}) => {
     const banner_box = useRef<HTMLDivElement>(null)
-    // const swiper = useSwiper();
-
-
-    // useEffect(() => {
-    //     if (banner_box.current) {
-    //         swiper && swiper.destroy(false)
-    //         if (data.length === 1) {
-    //         } else {
-    //
-    //         }
-    //     }
-    //
-    // }, [data.length])
 
     return (
         <div className={styles.banner}>

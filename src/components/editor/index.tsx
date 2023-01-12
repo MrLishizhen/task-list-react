@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react'
 import {Editor, Toolbar} from '@wangeditor/editor-for-react'
 import {IDomEditor, IEditorConfig, IToolbarConfig, DomEditor} from '@wangeditor/editor'
 
-function MyEditor() {
+function MyEditor(props:{editor_html:string}) {
     // editor 实例
     const [editor, setEditor] = useState<IDomEditor | null>(null)   // TS 语法
     // 编辑器内容
@@ -28,6 +28,10 @@ function MyEditor() {
         placeholder: '在此输入更多内容…',
     }
 
+
+    useEffect(()=>{
+        setHtml(props.editor_html)
+    },[props.editor_html])
     // 及时销毁 editor ，重要！
     useEffect(() => {
         // if(editor){
