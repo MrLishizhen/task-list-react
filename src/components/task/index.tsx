@@ -1,7 +1,7 @@
 import styles from './index.module.less'
 import React, {useEffect} from 'react'
 import Inputs from './input'
-import Item from './item'
+import Item from "@/components/task/item";
 import TaskEmpty from "@/components/task/task_empty";
 import Ring_progress from './ringProgress'
 import {useState} from "react";
@@ -11,6 +11,8 @@ import {set_task_radio} from "@/api/home";
 import moment from "moment";
 import {deepClone} from "@/util/utils";
 import {nanoid} from 'nanoid'
+import AnimatedList from "@/components/task/list";
+import _ from "lodash";
 
 interface data_type {
     day: number,
@@ -24,7 +26,7 @@ interface data_type {
 interface task_list {
     title: string,
     hot_radio: boolean,
-    id: number|string
+    id: number | string
 }
 
 const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
@@ -32,7 +34,10 @@ const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
     const [task_list, set_task_list] = useState<task_list[]>([])
 
     useEffect(() => {
+        // if (!(_.isEqual(data.list, task_list))) {
         set_task_list(data.list)
+        // }
+
     }, [data.list])
     const task_list_radio = (id: number) => {
 
