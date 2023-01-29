@@ -103,7 +103,7 @@ const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
                         task_list && task_list.length > 0 ? task_list.map(u => {
                             return <Item key={u.id} task_list_content_click={task_list_content_click}
                                          onChange={task_list_radio} data={{...u}}/>
-                        }) : <TaskEmpty/>
+                        }) : <TaskEmpty day={data.day}/>
                     }
                 </div>
             </div>
