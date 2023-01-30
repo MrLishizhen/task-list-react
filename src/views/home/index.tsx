@@ -33,7 +33,7 @@ const Home = () => {
         for (let i = 0; i < data.length; i++) {
             week_data.push(...data[i].list)
         }
-        if (!_.isEqual(local_data, week_data) && week_data.length !== 0) {
+        if (!_.isEqual(local_data, week_data)) {
             localStorage.setItem('my_week', JSON.stringify(week_data));
         }
     }, [data])
