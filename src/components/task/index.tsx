@@ -24,7 +24,7 @@ const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
     }, [data.list])
 
     const task_list_radio = (id: number) => {
-        const {_data,data_index,data_item} = useTaskData(home_data,data.day)
+        const {_data, data_index, data_item} = useTaskData(home_data, data.day)
         // const _data = deepClone(home_data)
         // let data_item: any = _data.find((u: any) => u.day === data.day);
         // let data_index: number = _data.findIndex((u: any) => u.day === data.day) || 0;
@@ -59,10 +59,10 @@ const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
                 title: e.target.value,
                 hot_radio: false,
                 id: nanoid(),
-                date: moment().format("YYYY-MM-DD HH:mm:ss")
+                date: moment(new Date().getFullYear() + '-' + data.month_day_number).format("YYYY-MM-DD") + ' ' + moment().format('HH:mm:ss')
             }
             e.target.value = ''
-            const {_data,data_index,data_item} = useTaskData(home_data,data.day)
+            const {_data, data_index, data_item} = useTaskData(home_data, data.day)
             // const _data = deepClone(home_data)
             // let data_item: any = _data.find((u: any) => u.day === data.day);
             // let data_index: number = _data.findIndex((u: any) => u.day === data.day) || 0;
@@ -77,7 +77,7 @@ const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
                 list.push(task_list[i])
             }
         }
-        const {_data,data_index,data_item} = useTaskData(home_data,data.day)
+        const {_data, data_index, data_item} = useTaskData(home_data, data.day)
         // const _data = deepClone(home_data)
         // let data_item: any = _data.find((u: any) => u.day === data.day);
         // let data_index: number = _data.findIndex((u: any) => u.day === data.day) || 0;

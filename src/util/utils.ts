@@ -16,6 +16,7 @@ interface data_type {
     hot: boolean,
     week_str: string,
     month_day: string,
+    month_day_number:string,
     list: task_list[]
 }
 
@@ -57,6 +58,7 @@ export const getItem = (date: any, data: any = []) => {
     const month = date.getMonth() + 1;
     const getUTCDate = date.getDate();
     let month_day = (month >= 10 ? month : '0' + month + '月') + (getUTCDate >= 10 ? getUTCDate : '0' + getUTCDate + '日')
+    let month_day_number = (month >= 10 ? month : '0' + month + '-') + (getUTCDate >= 10 ? getUTCDate : '0' + getUTCDate)
     const date_yyyy_mm_ss = year + '-' + (month >= 10 ? month : '0' + month) + '-' + (getUTCDate >= 10 ? getUTCDate : '0' + getUTCDate);
 
     let itemData = data.filter((u: any) => isSameDay(u.date, date_yyyy_mm_ss))
@@ -67,6 +69,7 @@ export const getItem = (date: any, data: any = []) => {
         hot: date.getDate() === new Date().getDate(),
         week_str: '周' + week,
         month_day: month_day,
+        month_day_number:month_day_number,
         list: [...itemData]
     }
 
