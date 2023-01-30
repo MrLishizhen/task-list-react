@@ -43,7 +43,7 @@ export const timeFormatting = (time = '天', global_data = []): data_type[] => {
         let dates = getWeekTime()
         for (let i = 0; i < dates.length; i++) {
             let date = new Date(dates[i])
-            data.push(getItem(date))
+            data.push(getItem(date,global_data))
         }
 
     }
