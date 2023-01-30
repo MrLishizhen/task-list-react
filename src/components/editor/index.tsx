@@ -4,11 +4,11 @@ import React, {useState, useEffect} from 'react'
 import {Editor, Toolbar} from '@wangeditor/editor-for-react'
 import {IDomEditor, IEditorConfig, IToolbarConfig, DomEditor} from '@wangeditor/editor'
 
-function MyEditor(props:{editor_html:string}) {
+function MyEditor(props:{editor_html:string,getHtml:(html:string)=>void}) {
     // editor 实例
     const [editor, setEditor] = useState<IDomEditor | null>(null)   // TS 语法
     // 编辑器内容
-    const [html, setHtml] = useState('')
+    // const [html, setHtml] = useState('')
 
     // 工具栏配置
     const toolbarConfig: Partial<IToolbarConfig> = {
@@ -29,9 +29,9 @@ function MyEditor(props:{editor_html:string}) {
     }
 
 
-    useEffect(()=>{
-        setHtml(props.editor_html)
-    },[props.editor_html])
+    // useEffect(()=>{
+    //     setHtml(props.editor_html)
+    // },[props.editor_html])
     // 及时销毁 editor ，重要！
     useEffect(() => {
         // if(editor){
@@ -51,9 +51,9 @@ function MyEditor(props:{editor_html:string}) {
 
             <Editor
                 defaultConfig={editorConfig}
-                value={html}
+                value={props.editor_html}
                 onCreated={setEditor}
-                onChange={editor => setHtml(editor.getHtml())}
+                onChange={editor => props.getHtml(editor.getHtml())}
                 mode="simple"
                 style={{height: '400px', overflowY: 'hidden'}}
             />

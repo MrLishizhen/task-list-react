@@ -5,22 +5,6 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-interface data_type {
-    day: number,
-    week: string,
-    hot: boolean,
-    week_str: string,
-    month_day: string,
-    list: task_list[]
-}
-
-interface task_list {
-    title: string,
-    hot_radio: boolean,
-    id: number
-}
-
-
 /*
 * 1.无缝轮播
 * 2.点击块自动居中
@@ -35,8 +19,8 @@ const Banner: React.FC<{ name: string, data: data_type[] }> = ({name, data}) => 
             <div className={styles.banner_box} ref={banner_box}>
                 {
                     name === '天' ?
-                        data.map((u: data_type, i) => {
-                            return (<div key={i} className={styles.banner_item}>
+                        data.map((u: data_type,) => {
+                            return (<div key={u.day} className={styles.banner_item}>
                                 <Task name={name} data={u}/>
                             </div>)
                         })

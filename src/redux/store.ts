@@ -1,8 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit'
 import home_model from "@/redux/home_model";
+import home_data from "@/redux/home_data";
 const store = configureStore({
     reducer:{
-        home_model
+        home_model,
+        home_data
     }
 })
 
