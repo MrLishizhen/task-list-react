@@ -2,7 +2,8 @@
 interface task_list {
     title: string,
     hot_radio: boolean,
-    id: number | string
+    id: number | string,
+    date:string,
 }
 
 interface data_type {
