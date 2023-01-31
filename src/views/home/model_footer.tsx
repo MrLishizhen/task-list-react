@@ -13,11 +13,15 @@ const Model_footer = () => {
 
     const click_save_btn = () => {
         const _home_model = deepClone(home_model)
-        const {_data,data_index,data_item} = useTaskData(home_data,_home_model.day)
-        // const _data = deepClone(home_data)
-        // let data_item: any = _data.find((u: any) => u.day === _home_model.day);
-        // let data_index: number = _data.findIndex((u: any) => u.day === _home_model.day) || 0;
-        _data[data_index] = {...data_item, list: [_home_model.hot_list]}
+        const {_data, data_index, data_item} = useTaskData(home_data, _home_model.day)
+        //获取需要在list中删除的原始数组
+        let list = [...data_item.list];
+        const {id} = _home_model.hot_list;
+        const hot_index = list.findIndex((u) => u.id === id);
+        //删除
+        list.splice(hot_index, 1);
+        //重新构造_data中data_index中的内容
+        _data[data_index] = {...data_item, list: [_home_model.hot_list, ...list]}
         dispatch(set_home_data(_data))
         dispatch(set_model_open(0))
     }
@@ -34,7 +38,7 @@ const Model_footer = () => {
                     index = i
                 }
             }
-            const {_data,data_item} = useTaskData(home_data,home_model.day)
+            const {_data, data_item} = useTaskData(home_data, home_model.day)
             // const _data = deepClone(home_data)
             // let data_item: any = home_data.find((u: any) => u.day === home_model.day);
             _data[index] = {...data_item, list: [...list]}
