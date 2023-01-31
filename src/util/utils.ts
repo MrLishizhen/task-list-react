@@ -133,3 +133,12 @@ export const getStartEndTime = (time: string) => {
         return [dates[0] + ' 00:00:00', dates[dates.length - 1] + " 59:59:59"]
     }
 }
+
+
+export const set_local = (id:string|number)=>{
+    const local_data = localStorage.getItem('my_week') ? JSON.parse(localStorage.getItem('my_week') || '') || [] : [];
+
+    let local_index = local_data.findIndex((u: any) => u.id === id);
+    local_data.splice(local_index, 1)
+    localStorage.setItem('my_week', JSON.stringify(local_data))
+}

@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from "@/redux/hook";
-import {deepClone} from "@/util/utils";
+import {deepClone, set_local} from "@/util/utils";
 import {set_home_data} from "@/redux/home_data";
 import {set_model_open} from "@/redux/home_model";
 import styles from "@/views/home/index.module.less";
@@ -25,19 +25,24 @@ const Model_footer = () => {
         dispatch(set_home_data(_data))
         dispatch(set_model_open(0))
     }
+
     const removeItem = () => {
         const {day, hot_list} = home_model;
         const data: data_type | undefined = home_data.find((u: data_type) => u.day === day);
         let index = 0;
+        let id:string | number = 0;
         if (data && data.list) {
             let list = [];
             for (let i = 0; i < data.list.length; i++) {
                 if (data.list[i].id !== hot_list.id) {
                     list.push(data.list[i])
                 } else {
+                    id = data.list[i].id
                     index = i
                 }
             }
+
+            set_local(id)
             const {_data, data_item} = useTaskData(home_data, home_model.day)
             // const _data = deepClone(home_data)
             // let data_item: any = home_data.find((u: any) => u.day === home_model.day);

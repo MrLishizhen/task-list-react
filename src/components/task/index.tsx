@@ -10,7 +10,7 @@ import {set_home_data} from "@/redux/home_data";
 import {useAppDispatch, useAppSelector} from '@/redux/hook'
 import {set_task_radio} from "@/api/home";
 import moment from "moment";
-import {deepClone} from "@/util/utils";
+import {deepClone, set_local} from "@/util/utils";
 import {nanoid} from 'nanoid'
 import useTaskData from "@/hooks/useTaskData";
 
@@ -72,11 +72,16 @@ const Task: React.FC<{ name: string, data: data_type }> = ({name, data}) => {
     }
     const removeItem = (child_data: any) => {
         let list = []
+        let id: string | number = 0;
         for (let i = 0; i < task_list.length; i++) {
             if (task_list[i].id !== child_data.id) {
                 list.push(task_list[i])
+            } else {
+                id = task_list[i].id
             }
+
         }
+        set_local(id)
         const {_data, data_index, data_item} = useTaskData(home_data, data.day)
         // const _data = deepClone(home_data)
         // let data_item: any = _data.find((u: any) => u.day === data.day);
